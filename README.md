@@ -6,7 +6,7 @@ A geospatial decision support system for optimizing EV charging station placemen
 
 ## Research Paper
 
-**[Optimizing Public EV Charging Infrastructure Through Geospatial and Socioeconomic Analysis](report/ev_dgs_report.pdf)**  
+**[Optimizing Public EV Charging Infrastructure Through Geospatial and Socioeconomic Analysis](ev_dgs_report.pdf)**  
 Singh, A., Meka, S.R., Sunkavalli, S.H. — George Mason University, CS787, 2024. IEEE Format.
 
 > **My contribution (Sri Harsha Sunkavalli):** Model Development & Feature Engineering — designed and implemented the core DGAL binary integer programming model (`scripts/dgal_model.py`), composite demand scoring system combining population, income and infrastructure gap features (`scripts/enrich_candidate_sites.py`), and sensitivity analysis across 36 optimization scenarios.
