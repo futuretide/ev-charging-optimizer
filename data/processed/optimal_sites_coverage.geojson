@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"name": "optimal_sites_coverage",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 13037.0, "dist_to_road": 0.033687936152661642, "GEOID": null, "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.099858603724471, 38.949748287753835 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 11997.0, "dist_to_road": 0.042628928224609466, "GEOID": "11001000804", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.089563910568458, 38.922580829412048 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 2193.0, "dist_to_road": 0.045730293851685956, "GEOID": "11001000804", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.087434903345098, 38.930282127835909 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 14649.0, "dist_to_road": 0.072844300712992083, "GEOID": "11001000802", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.086806082646206, 38.906721348981904 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 3038.0, "dist_to_road": 0.43552366012977622, "GEOID": "11001001004", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.085000468925131, 38.94791089951525 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 14649.0, "dist_to_road": 101.89450019209109, "GEOID": "11001000802", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.084955553160924, 38.90691008994542 ] } },
+{ "type": "Feature", "properties": { "degree": 4, "AADT": 6988.0, "dist_to_road": 0.12734620450882894, "GEOID": "11001000803", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.083994355806908, 38.930282127835909 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 3001.0, "dist_to_road": 0.37708309175461208, "GEOID": "11001001004", "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.08274569756199, 38.944794915537898 ] } },
+{ "type": "Feature", "properties": { "degree": 3, "AADT": 19812.0, "dist_to_road": 0.31270108443169775, "GEOID": null, "median_income": null, "population": null, "demand_score": null }, "geometry": { "type": "Point", "coordinates": [ -77.082170775780156, 38.963572582673983 ] } }
+]
+}

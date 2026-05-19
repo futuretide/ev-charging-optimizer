@@ -1,0 +1,33 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.Python
+
+# Virtual environment
+venv/
+env/
+.env
+
+# Large data files (raw census shapefiles)
+data/raw/census_tracts/*.shp
+data/raw/census_tracts/*.dbf
+data/raw/census_tracts/*.shx
+data/raw/streets/*.shp
+data/raw/streets/*.dbf
+data/raw/streets/*.shx
+data/raw/traffic/*.shp
+data/raw/traffic/*.dbf
+data/raw/traffic/*.shx
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/

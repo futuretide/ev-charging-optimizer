@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8"?><metadata>
+    <idinfo>
+        <citation>
+            <citeinfo>
+                <origin/>
+                <pubdate>20210713</pubdate>
+                <title>Roadway Block</title>
+                <geoform>vector digital data</geoform>
+            </citeinfo>
+        </citation>
+        <descript>
+            <abstract>For a city, street blocks are a very common way in which to organize and relate work (e.g. 'I need to fix a pothole on the 1600 Block of Pennsylvania Ave'). Although driveways or alleys may intersect streets, this representation requires that the segment remain unbroken. Road types include streets. Previously Called Street Segments. Note that there are no from/to address fields. We will not be maintaining them in our data. There also will be no generating a 'streetname' list.For more information please visit DDOT's wiki page.</abstract>
+            <purpose>This data set was created to act as a basis for public and private institutions to improve their policy and decision making; promote economic development; and enhance the quality of life for residents and businesses.</purpose>
+            <supplinf>https://ddotwiki.atlassian.net/wiki/spaces/GIS0225/pages/2053603653/GIS</supplinf>
+        </descript>
+        <status>
+            <progress>Complete</progress>
+            <update>Weekly</update>
+        </status>
+        <spdom>
+            <bounding>
+                <westbc>-77.116734</westbc>
+                <eastbc>-76.909401</eastbc>
+                <northbc>38.995255</northbc>
+                <southbc>38.793168</southbc>
+            </bounding>
+        </spdom>
+        <keywords>
+            <theme>
+                <themekt>None</themekt>
+                <themekey>transportation</themekey>
+                <themekey>street block</themekey>
+            </theme>
+            <theme>
+                <themekt>ISO 19115 Topic Categories</themekt>
+                <themekey>transportation</themekey>
+            </theme>
+            <place>
+                <placekt>None</placekt>
+                <placekey>Washington D.C.</placekey>
+                <placekey>DC</placekey>
+                <placekey>District of Columbia</placekey>
+            </place>
+        </keywords>
+        <accconst>Other Constraints</accconst>
+        <useconst>This work is licensed under a Creative Commons Attribution 4.0 International License.</useconst>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>District Department of Transportation</cntorg>
+                </cntorgp>
+                <cntpos>GIS and Applications Manager</cntpos>
+            </cntinfo>
+        </ptcontac>
+        <ptcontac>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Office of the Chief Technology Officer</cntorg>
+                </cntorgp>
+                <cntpos>GIS Data Coordinator</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>200 I Street SE</address>
+                    <city>Washington</city>
+                    <state>DC</state>
+                    <postal>20003</postal>
+                    <country>US</country>
+                </cntaddr>
+                <cntvoice>(202) 727-2277</cntvoice>
+                <cntemail>dcgis@dc.gov</cntemail>
+                <hours>8:30 am - 5 pm</hours>
+            </cntinfo>
+        </ptcontac>
+        <datacred>District Department of Transportation</datacred>
+        <native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</native>
+    </idinfo>
+    <dataqual>
+        <lineage>
+            <procstep>
+                <procdesc>Staff updated the dataset using the latest information</procdesc>
+                <procdate>20190726</procdate>
+                <proccont>
+                    <cntinfo>
+                        <cntorgp>
+                            <cntorg>D.C. Office of the Chief Technology Officer</cntorg>
+                            <cntper>GIS Data Coordinator</cntper>
+                        </cntorgp>
+                        <cntpos>GIS Data Coordinator</cntpos>
+                        <cntaddr>
+                            <addrtype>mailing and physical</addrtype>
+                            <address>200 I Street SE, 5th Floor</address>
+                            <city>Washington</city>
+                            <state>DC</state>
+                            <postal>20003</postal>
+                        </cntaddr>
+                        <cntvoice>(202) 727-2277</cntvoice>
+                        <cntfax>(202) 727-5660</cntfax>
+                        <cntemail>dcgis@dc.gov</cntemail>
+                        <hours>8:30 am - 5:00 pm</hours>
+                    </cntinfo>
+                </proccont>
+            </procstep>
+            <procstep>
+                <procdesc>added buslane_inbound, buslane_outbound, fromstreet, tostreet, ward_id, anc_id, and smd_id fields.</procdesc>
+                <procdate>20210312</procdate>
+            </procstep>
+            <procstep>
+                <procdesc>staff added SURFACT_TYPE, PARKINGZONE_RPP, PARKINGZONE_ROP fields.</procdesc>
+                <procdate>20210706</procdate>
+            </procstep>
+        </lineage>
+    </dataqual>
+    <spdoinfo>
+        <direct>Vector</direct>
+        <ptvctinf>
+            <sdtsterm>
+                <sdtstype>String</sdtstype>
+                <ptvctcnt>13781</ptvctcnt>
+            </sdtsterm>
+        </ptvctinf>
+    </spdoinfo>
+    <eainfo>
+        <detailed>
+            <enttyp>
+                <enttypl>DCGIS.RoadwayBlockLn</enttypl>
+                <enttypd>Data attributes from DDOT Centerline dataset segmentation.</enttypd>
+                <enttypds>DDOT</enttypds>
+            </enttyp>
+            <attr>
+                <attrlabl>OBJECTID</attrlabl>
+                <attrdef>Internal feature number.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Sequential unique whole numbers that are automatically generated.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE</attrlabl>
+                <attrdef>Feature geometry.</attrdef>
+                <attrdefs>Esri</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <udom>Coordinates defining the features.</udom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>ROUTEID</attrlabl>
+                <attrdef>Unique ID of the route that this segment is on.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>FROMMEASURE</attrlabl>
+                <attrdef>The measure along the route that this segment begins (meters).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOMEASURE</attrlabl>
+                <attrdef>The measure along the route that this segment ends (meters).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ROUTENAME</attrlabl>
+                <attrdef>Official name for the roadway segment.</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ROADTYPE</attrlabl>
+                <attrdef>The type of road or path (Street, Alley, Driveway, etc.).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>1</edomv>
+                                                						
+                        
+                        <edomvd>Street</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>2</edomv>
+                                                						
+                        
+                        <edomvd>Service Road</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>3</edomv>
+                                                						
+                        
+                        <edomvd>Ramp</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>4</edomv>
+                                                						
+                        
+                        <edomvd>Alley</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>5</edomv>
+                                                						
+                        
+                        <edomvd>Driveway</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>6</edomv>
+                                                						
+                        
+                        <edomvd>Trail</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>7</edomv>
+                                                						
+                        
+                        <edomvd>Walkway</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>8</edomv>
+                                                						
+                        
+                        <edomvd>Streetcar</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BLOCKKEY</attrlabl>
+                <attrdef>Primary key ID for the block. This is a GUID, which is derived from the BlockID value.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANES</attrlabl>
+                <attrdef>Contains a count of the total number of travel lanes for this segment. This includes turn lanes.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALPARKINGLANES</attrlabl>
+                <attrdef>Total parking lanes. **Note: This does not exactly depict the signed parking permissions/restrictions on a block.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALRAISEDBUFFERS</attrlabl>
+                <attrdef>Total raised/curb buffers or barriers. **Note:  this does not include paint-only buffers.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANEWIDTH</attrlabl>
+                <attrdef>The sum width (in feet) of the travel lanes on this segment.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALCROSSSECTIONWIDTH</attrlabl>
+                <attrdef>Through Lanes + Parking Lanes + Buffer widths + Barrier widths. Represents the paved/roadway Right-of-Way.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALPARKINGLANEWIDTH</attrlabl>
+                <attrdef>The sum width (in feet) of the parking lanes on this segment.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALRAISEDBUFFERWIDTH</attrlabl>
+                <attrdef>This includes the width of all buffers/barriers.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANESINBOUND</attrlabl>
+                <attrdef>For more information on how DDOT defines Inbound or Outbound direction, please visit our cross-section documentation (https://wiki.ddot.dc.gov/display/public/GIS/Cross-section+Data#CrosssectionData-Direction).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANESOUTBOUND</attrlabl>
+                <attrdef>For more information on how DDOT defines Inbound or Outbound direction, please visit our cross-section documentation (https://wiki.ddot.dc.gov/display/public/GIS/Cross-section+Data#CrosssectionData-Direction).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANESBIDIRECTIONAL</attrlabl>
+                <attrdef>Roads sometimes are not distinctly marked and have a single (usually very wide) paved lane both directions of travel to use. Alleys typically have this type the most.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALTRAVELLANESREVERSIBLE</attrlabl>
+                <attrdef>Sum of AM/PM rush hour lanes.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SUMMARYDIRECTION</attrlabl>
+                <attrdef>This indicates if the roadway is two-way direction or if it only allows one way traffic. If one way, the inbound/outbound direction tells you which direction the traffic flows.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_PARKINGLANE_ADJACENT</attrlabl>
+                <attrdef>Is Bike lane Adjacent to Parking Lane?</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_THROUGHLANE_ADJACENT</attrlabl>
+                <attrdef>Is Bike lane Adjacent to Travel Lane?</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_POCKETLANE_ADJACENT</attrlabl>
+                <attrdef>Is Bike lane Adjacent to a “Pocket” turn lane?</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_CONTRAFLOW</attrlabl>
+                <attrdef>A single protected or conventional bike lane; the difference is that the bike lane is going in the opposite direction of traffic.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_CONVENTIONAL</attrlabl>
+                <attrdef>Painted, on-street dedicated space for biking. Bike lanes are typically 5-feet wide with a bicycle symbol and arrow in the direction of travel. There is no physical separation between the bike lane and the adjacent parking and/or travel lane. They are usually on both sides of a two-way road, and one side on a one-way road.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_DUAL_PROTECTED</attrlabl>
+                <attrdef>A pair of lanes for bicycling that are physically separated from automobile parking or traffic with posts, curbs or other type of vertical barrier.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_DUAL_BUFFERED</attrlabl>
+                <attrdef>A pair of lanes for bicycling that are painted, on-street dedicated spaces for biking with a simple, painted buffer in between the bike lanes and the adjacent through lane.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_PROTECTED</attrlabl>
+                <attrdef>A dedicated space for bicycling that is physically separated from automobile parking or traffic with posts, curbs or other type of vertical barrier.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BIKELANE_BUFFERED</attrlabl>
+                <attrdef>Painted, on-street dedicated space for biking with a simple, painted buffer in between the bike lane and the adjacent through lane.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions (or, both sides)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>RIGHTTURN_EXCLUSIVE</attrlabl>
+                <attrdef>This indicates if the roadway has an exclusive right turn lane and what side of the centerline it appears on.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>LEFTTURN_EXCLUSIVE</attrlabl>
+                <attrdef>This indicates if the roadway has an exclusive right turn lane and what side of the centerline it appears on. **Note: Exclusive left turn lanes are only flagged for one way roads.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>DOUBLEYELLOW_LINE</attrlabl>
+                <attrdef>Is there a double yellow line on the segment?</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Yes</edomv>
+                                                						
+                        
+                        <edomvd>Double-yellow line present</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SECTIONFLAGS</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>LOC_ERROR</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>MIDMEASURE</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>AADT</attrlabl>
+                <attrdef>Annualized Traffic Volume (Annual Average Daily Traffic).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>AADT_YEAR</attrlabl>
+                <attrdef>Year that AADT value was calculated.</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>FHWAFUNCTIONALCLASS</attrlabl>
+                <attrdef>Functional Classification codes, using HPMS coded values.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>HPMSID</attrlabl>
+                <attrdef>HPMS Sample Section ID #</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>HPMSSECTIONTYPE</attrlabl>
+                <attrdef>Type of HPMS sample.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ID</attrlabl>
+            </attr>
+            <attr>
+                <attrlabl>IRI</attrlabl>
+                <attrdef>International Roughness Index raw score.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>IRI_DATE</attrlabl>
+                <attrdef>Date of most recent IRI capture.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>NHSCODE</attrlabl>
+                <attrdef>Internal ID code for NHS Type.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>OWNERSHIP</attrlabl>
+                <attrdef>Roadway ownership code.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PCI_CONDCATEGORY</attrlabl>
+                <attrdef>The generalized PCI condition category for this location (based upon PCI Score).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PCI_LASTINSPECTED</attrlabl>
+                <attrdef>Date of last inspection for PCI scoring.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>PCI_SCORE</attrlabl>
+                <attrdef>The Pavement Condition Index (PCI) score for this location.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>QUADRANT</attrlabl>
+                <attrdef>The addressing quadrant of DC (NE, NW, SE, SW) in which the segment is located.</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SIDEWALK_IB_PAVTYPE</attrlabl>
+                <attrdef>Pavement type for the sidewalk at this location.  For more information about surface/pavement types, see our DDOT wiki documentation (https://wiki.ddot.dc.gov/display/public/GIS/Pavement+and+Sidewalk+Surface+Section+Types).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SIDEWALK_IB_WIDTH</attrlabl>
+                <attrdef>The sidewalk width (in feet) at this location.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SIDEWALK_OB_PAVTYPE</attrlabl>
+                <attrdef>Pavement type for the sidewalk at this location.  For more information about surface/pavement types, see our DDOT wiki documentation (https://wiki.ddot.dc.gov/display/public/GIS/Pavement+and+Sidewalk+Surface+Section+Types).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SIDEWALK_OB_WIDTH</attrlabl>
+                <attrdef>The sidewalk width (in feet) at this location.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SPEEDLIMITS_IB</attrlabl>
+                <attrdef>The posted speed limit for both inbound and outbound directions. Generally, these are R2-1 speed limit signs. **Note: DDOT assumes a default speed limit of 20MPH. All directional segments begin with that value until a speed limit sign is detected on the appropriate side.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SPEEDLIMITS_IB_ALT</attrlabl>
+                <attrdef>The posted speed limit for school speed limit sign types.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SPEEDLIMITS_OB</attrlabl>
+                <attrdef>The posted speed limit for both inbound and outbound directions. Generally, these are R2-1 speed limit signs. **Note: DDOT assumes a default speed limit of 20MPH. All directional segments begin with that value until a speed limit sign is detected on the appropriate side.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SPEEDLIMITS_OB_ALT</attrlabl>
+                <attrdef>The posted speed limit for school speed limit sign types.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>STREETNAME</attrlabl>
+                <attrdef>Official name for the roadway segment.</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>STREETTYPE</attrlabl>
+                <attrdef>The street type/suffix for this street. (e.g. St, Rd, Ln, etc.)</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>BLOCK_NAME</attrlabl>
+                <attrdef>Master Address Repository (MAR) block name.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_HIGH</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the possible/theoretical address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_LOW</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the possible/theoretical address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_RIGHT_HIGH</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the current known/actual address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_LEFT_HIGH</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the current known/actual address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_RIGHT_LOW</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the current known/actual address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>MAR_ID</attrlabl>
+                <attrdef>Master Address Repository (MAR) address identifier.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ADDRESS_RANGE_LEFT_LOW</attrlabl>
+                <attrdef>Master Address Repository (MAR) block ranges. This represents the current known/actual address ranges.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>BLOCKID</attrlabl>
+                <attrdef>Key ID for the block; it is a concatenation of the RouteID, FromIntersectionID and ToIntersectionID.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>DCFUNCTIONALCLASS</attrlabl>
+                <attrdef>Functional Classification codes, using DDOT's coded values.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>11</edomv>
+                                                						
+                        
+                        <edomvd>Interstate</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>12</edomv>
+                                                						
+                        
+                        <edomvd>Other Freeway and Expressway</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>14</edomv>
+                                                						
+                        
+                        <edomvd>Principal/Primary Arterial</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>16</edomv>
+                                                						
+                        
+                        <edomvd>Minor Arterial</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>17</edomv>
+                                                						
+                        
+                        <edomvd>Collector</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>19</edomv>
+                                                						
+                        
+                        <edomvd>Local</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>NHSTYPE</attrlabl>
+                <attrdef>Type of NHS Segment.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SNOWROUTE_DDOT</attrlabl>
+                <attrdef>Is the segment part of a DDOT Snow Route?</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SNOWROUTE_DPW</attrlabl>
+                <attrdef>Is the segment part of a DPW Snow Route?</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SNOWSECTION_DDOT</attrlabl>
+                <attrdef>Is the segment part of a DDOT Snow Section?</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SNOWZONE_DDOT</attrlabl>
+                <attrdef>Is the segment part of a DDOT Snow Zone?</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SNOWZONE_DPW</attrlabl>
+                <attrdef>Is the segment part of a DPW Snow Zone?</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>LEFTTURN_CURBLANE_EXCL</attrlabl>
+                <attrdef>This indicates if the roadway has an exclusive left turn lane and what side of the centerline it appears on. **Note: Exclusive left turn lanes are only flagged for one way roads.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>LEFTTURN_CURBLANE_EXCL_LEN</attrlabl>
+                <attrdef>The length (in feet) of the exclusive left turn lane.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>RIGHTTURN_CURBLANE_EXCL</attrlabl>
+                <attrdef>This indicates if the roadway has an exclusive right turn lane and what side of the centerline it appears on.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>RIGHTTURN_CURBLANE_EXCL_LEN</attrlabl>
+                <attrdef>The length (in feet) of the exclusive right turn lane.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALBIKELANES</attrlabl>
+                <attrdef>Simple count of the total number of bike lane facilities on this segment. 
+
+If there is a conventional bike lane on one side (IB or OB), totalbikelanes = 1
+
+If there are conventional bike lane on both sides (BD), totalbikelanes = 2
+
+If there is a dual protected bike lane on one side (IB or OB), totalbikelanes = 2.  This is because, 2 lanes comprise the dual protected bike lane.
+
+If there are dual protected bike lanes on both sides (BD), totalbikelanes = 4.  This is because 2 lanes comprise each of the dual protected bike lanes.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOTALBIKELANEWIDTH</attrlabl>
+                <attrdef>The total width in feet of all bike lane facilities on this segment. **Note:  excludes any painted or protected buffers.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>RPPDIRECTION</attrlabl>
+                <attrdef>Indicates if this block has Resident Parking Permitted.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>OB</edomv>
+                                                						
+                        
+                        <edomvd>Outbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>IB</edomv>
+                                                						
+                        
+                        <edomvd>Inbound Side</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>BD</edomv>
+                                                						
+                        
+                        <edomvd>Both Directions</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>RPPSIDE</attrlabl>
+                <attrdef>Indicates if this block has Resident Parking Permitted. (original legacy data):</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>O</edomv>
+                                                						
+                        
+                        <edomvd>Odd Address Side of Street</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>V</edomv>
+                                                						
+                        
+                        <edomvd>Even Address Side of Street</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>B</edomv>
+                                                						
+                        
+                        <edomvd>Both Sides of Street</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>S</edomv>
+                                                						
+                        
+                        <edomvd>Single-unit Address Only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>AO</edomv>
+                                                						
+                        
+                        <edomvd>Single Address Only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>SLOWSTREETINFO</attrlabl>
+                <attrdef>Indicates if this block has been designated as a DDOT Slow Street.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>Yes</edomv>
+                                                						
+                        
+                        <edomvd>This is a Slow Street.</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BUSLANE_INBOUND</attrlabl>
+                <attrdef>Indicates if this block has dedicated bus lanes in the roadway cross-section.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L1</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in the curblane.</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L2</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in lane adjacent to the curblane (usually a parking lane is the curblane for these cases).</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L3</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in both curblane and next lane over.</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>BUSLANE_OUTBOUND</attrlabl>
+                <attrdef>Indicates if this block has dedicated bus lanes in the roadway cross-section.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L1</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in the curblane.</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L2</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in lane adjacent to the curblane (usually a parking lane is the curblane for these cases).</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>L3</edomv>
+                                                						
+                        
+                        <edomvd>Dedicated Bus Lane in both curblane and next lane over.</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>FROMSTREET</attrlabl>
+                <attrdef>Name of streets that intersect the beginning of this segment.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>TOSTREET</attrlabl>
+                <attrdef>Name of streets that intersect the end of this segment.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>WARD_ID</attrlabl>
+                <attrdef>Contains text value for DC Ward for the centerpoint of this segment.
+
+- '99' means this falls outside of DC
+- &lt;Null&gt; indicates a geometry error</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>ANC_ID</attrlabl>
+                <attrdef>Contains text value for DC's ANC for the centerpoint of this segment.
+
+- '99' means this falls outside of DC
+- &lt;Null&gt; indicates a geometry error</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SMD_ID</attrlabl>
+                <attrdef>Contains text value for DC SMD for the centerpoint of this segment.
+
+- '99' means this falls outside of DC
+- &lt;Null&gt; indicates a geometry error</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SE_ANNO_CAD_DATA</attrlabl>
+                <attrdef>Last time and date the information was updated.</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SURFACE_TYPE</attrlabl>
+                <attrdef>Surface Type</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>1</edomv>
+                                                						
+                        
+                        <edomvd>Unpaved</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>2</edomv>
+                                                						
+                        
+                        <edomvd>Bituminous</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>3</edomv>
+                                                						
+                        
+                        <edomvd>JPCP – Jointed Plain Concrete Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>4</edomv>
+                                                						
+                        
+                        <edomvd>JRCP – Jointed Reinforced Concrete Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>5</edomv>
+                                                						
+                        
+                        <edomvd>CRCP – Continuously Reinforced Concrete Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>6</edomv>
+                                                						
+                        
+                        <edomvd>Asphalt-Concrete (AC) Overlay over Existing AC Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>7</edomv>
+                                                						
+                        
+                        <edomvd>AC Overlay over Existing Jointed Concrete Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>8</edomv>
+                                                						
+                        
+                        <edomvd>AC (Bituminous Overlay over Existing CRCP)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>9</edomv>
+                                                						
+                        
+                        <edomvd>Unbonded Jointed Concrete Overlay on PCC Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>10</edomv>
+                                                						
+                        
+                        <edomvd>Bonded PCC Overlay on PCC Pavement</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>11</edomv>
+                                                						
+                        
+                        <edomvd>Other (includes “whitetopping”)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>12</edomv>
+                                                						
+                        
+                        <edomvd>Brick</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>13</edomv>
+                                                						
+                        
+                        <edomvd>Gravel</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PARKINGZONE_ROP</attrlabl>
+                <attrdef>Resident Only Parking (ROP).</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>1</edomv>
+                                                						
+                        
+                        <edomvd>Outbound (with centerline geometry)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>2</edomv>
+                                                						
+                        
+                        <edomvd>Inbound (against centerline geometry)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>3</edomv>
+                                                						
+                        
+                        <edomvd>Bidirectional (both directions allowed)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>11</edomv>
+                                                						
+                        
+                        <edomvd>AM Inbound/PM Outbound</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>12</edomv>
+                                                						
+                        
+                        <edomvd>AM Outbound/PM Inbound</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>13</edomv>
+                                                						
+                        
+                        <edomvd>AM Inbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>14</edomv>
+                                                						
+                        
+                        <edomvd>PM Inbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>15</edomv>
+                                                						
+                        
+                        <edomvd>AM Outbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>16</edomv>
+                                                						
+                        
+                        <edomvd>PM Outbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>99</edomv>
+                                                						
+                        
+                        <edomvd>UNDEFINED</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>PARKINGZONE_RPP</attrlabl>
+                <attrdef>Residential Parking Permit (RPP)</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>1</edomv>
+                                                						
+                        
+                        <edomvd>Outbound (with centerline geometry)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>2</edomv>
+                                                						
+                        
+                        <edomvd>Inbound (against centerline geometry)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>3</edomv>
+                                                						
+                        
+                        <edomvd>Bidirectional (both directions allowed)</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>11</edomv>
+                                                						
+                        
+                        <edomvd>AM Inbound/PM Outbound</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>12</edomv>
+                                                						
+                        
+                        <edomvd>AM Outbound/PM Inbound</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>13</edomv>
+                                                						
+                        
+                        <edomvd>AM Inbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>14</edomv>
+                                                						
+                        
+                        <edomvd>PM Inbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>15</edomv>
+                                                						
+                        
+                        <edomvd>AM Outbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>16</edomv>
+                                                						
+                        
+                        <edomvd>PM Outbound only</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>99</edomv>
+                                                						
+                        
+                        <edomvd>UNDEFINED</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>AADT_COMBINATION</attrlabl>
+                <attrdef>Annual Average Daily Traffic for combination trucks.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>AADT_COMBINATION_YEAR</attrlabl>
+                <attrdef>Year combination trucks volumes collected.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>AADT_SINGLE_UNIT</attrlabl>
+                <attrdef>Annual Average Daily Traffic for single-unit trucks and buses.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>AADT_SINGLE_UNIT_YEAR</attrlabl>
+                <attrdef>Year single-unit trucks and buses volumes collected.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SPEEDHUMP_PRESENT</attrlabl>
+                <attrdef>These are segments which have one or more Speed Hump or Speed Hump ahead signs 
+present. 
+
+Yes = Speed hump signage present on this segment
+
+NULL = no speed hump signage present</attrdef>
+                <attrdefs>DC OCTO</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>DC_MAINTENANCE_OPERATIONS</attrlabl>
+                <attrdef>Codes are those that are maintained by DC</attrdef>
+                <attrdefs>DDOT</attrdefs>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>1</edomv>
+                                                						
+                        
+                        <edomvd>DDOT</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>5</edomv>
+                                                						
+                        
+                        <edomvd>Private</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>2</edomv>
+                                                						
+                        
+                        <edomvd>National Park Service</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>3</edomv>
+                                                						
+                        
+                        <edomvd>Architect of The Capitol</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>0</edomv>
+                                                						
+                        
+                        <edomvd>Unknown</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>7</edomv>
+                                                						
+                        
+                        <edomvd>Other DC Agencies</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>8</edomv>
+                                                						
+                        
+                        <edomvd>Other Federal Agencies</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>4</edomv>
+                                                						
+                        
+                        <edomvd>Military Reservation</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>6</edomv>
+                                                						
+                        
+                        <edomvd>WMATA-METRO</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>9</edomv>
+                                                						
+                        
+                        <edomvd>Air Force</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>10</edomv>
+                                                						
+                        
+                        <edomvd>Navy - Marines</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+                <attrdomv>
+                                        					
+                    
+                    <edom>
+                                                						
+                        
+                        <edomv>11</edomv>
+                                                						
+                        
+                        <edomvd>Navy - Marines</edomvd>
+                                                						
+                        
+                        <edomvds>DDOT</edomvds>
+                                                					
+                    
+                    </edom>
+                                        				
+                
+                </attrdomv>
+            </attr>
+            <attr>
+                <attrlabl>MAINTENANCE_OPERATIONS</attrlabl>
+                <attrdef>Codes are those that are used for reporting to FHWA.</attrdef>
+                <attrdefs>DDOT</attrdefs>
+            </attr>
+            <attr>
+                <attrlabl>SHAPE.LEN</attrlabl>
+            </attr>
+        </detailed>
+    </eainfo>
+    <distinfo>
+        <distrib>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>D.C. Office of the Chief Technology Officer</cntorg>
+                    <cntper>GIS Data Coordinator</cntper>
+                </cntorgp>
+                <cntpos>GIS Data Coordinator</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>200 I Street SE, 5th Floor</address>
+                    <city>Washington</city>
+                    <state>DC</state>
+                    <postal>20003</postal>
+                </cntaddr>
+                <cntvoice>(202) 727-2277</cntvoice>
+                <cntfax>(202) 727-5660</cntfax>
+                <cntemail>dcgis@dc.gov</cntemail>
+                <hours>8:30 am - 5:00 pm</hours>
+            </cntinfo>
+        </distrib>
+        <distliab>See access and use constraints information.</distliab>
+        <custom>DC datasets can be downloaded from "https://opendata.dc.gov".</custom>
+    </distinfo>
+    <metainfo>
+        <metd>20221027</metd>
+        <metc>
+            <cntinfo>
+                <cntorgp>
+                    <cntorg>Office of the Chief Technology Officer</cntorg>
+                </cntorgp>
+                <cntpos>GIS Data Coordinator</cntpos>
+                <cntaddr>
+                    <addrtype>mailing and physical</addrtype>
+                    <address>200 I Street SE, 5th Floor</address>
+                    <city>Washington</city>
+                    <state>DC</state>
+                    <postal>20003</postal>
+                </cntaddr>
+                <cntvoice>(202) 727-2277</cntvoice>
+                <cntfax>(202) 727-5660</cntfax>
+                <cntemail>dcgis@dc.gov</cntemail>
+                <hours>8:30 am - 5:00 pm</hours>
+            </cntinfo>
+        </metc>
+        <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+        <metstdv>FGDC-STD-001-1998</metstdv>
+        <mettc>local time</mettc>
+    </metainfo>
+</metadata>

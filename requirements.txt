@@ -1,0 +1,10 @@
+streamlit
+geopandas
+folium
+streamlit-folium
+pyomo
+scipy
+numpy
+pandas
+geopy
+shapely
