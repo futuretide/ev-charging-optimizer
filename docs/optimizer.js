@@ -25,12 +25,13 @@
 
   function buildLP(data, p) {
     const { candidates: cands, tracts } = data;
+    const rule = p.rule || 'r50';
     const pairs = closePairs(cands, p.minDist);
     const lines = ['Maximize', ' obj: ' + cands.map((c, i) => `${c[2]} x${i}`).join(' + ')];
-    const live = tracts.map((t, j) => t.covers.length ? j : -1).filter(j => j >= 0);
+    const live = tracts.map((t, j) => t.covers[rule].length ? j : -1).filter(j => j >= 0);
     if (p.weight > 0 && live.length) lines[1] += ' + ' + live.map(j => `${p.weight} y${j}`).join(' + ');
     lines.push('Subject To', ' limit: ' + cands.map((_, i) => `x${i}`).join(' + ') + ` <= ${p.n}`);
-    live.forEach(j => lines.push(` c${j}: ` + tracts[j].covers.map(i => `x${i}`).join(' + ') + ` - y${j} >= 0`));
+    live.forEach(j => lines.push(` c${j}: ` + tracts[j].covers[rule].map(i => `x${i}`).join(' + ') + ` - y${j} >= 0`));
     pairs.forEach(([a, b], n) => lines.push(` p${n}: x${a} + x${b} <= 1`));
     lines.push('Binary', ' ' + cands.map((_, i) => `x${i}`).join(' ') + ' ' + live.map(j => `y${j}`).join(' '), 'End');
     return { lp: lines.join('\n'), pairs: pairs.length };
@@ -47,12 +48,13 @@
     return { selected: sel, objective: res.ObjectiveValue, status: res.Status, pairs, ms: performance.now() - t0 };
   }
 
-  function stats(data, sel) {
+  function stats(data, sel, rule) {
+    rule = rule || 'inside';
     const s = new Set(sel);
     let covered = 0, pop = 0, popAll = 0, demand = 0;
     data.tracts.forEach(t => {
       popAll += t.pop || 0;
-      if (t.covers.some(i => s.has(i))) { covered++; pop += t.pop || 0; }
+      if (t.covers[rule].some(i => s.has(i))) { covered++; pop += t.pop || 0; }
     });
     sel.forEach(i => demand += data.candidates[i][2]);
     return { covered, tracts: data.tracts.length, pop, popAll, demand };

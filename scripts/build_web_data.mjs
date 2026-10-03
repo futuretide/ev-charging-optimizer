@@ -23,9 +23,27 @@ const inRing = (pt, ring) => {
 const inPoly = (pt, rings) => inRing(pt, rings[0]) && !rings.slice(1).some(h => inRing(pt, h));
 
 const ll = cands.map(f => toLL(...f.geometry.coordinates));
+
+// Coverage rules. 'inside': site lies in the tract (what scripts/dgal_model.py does).
+// r25/r50/r100: site within 0.25 / 0.5 / 1 mile of the tract boundary (the paper's radius rule).
+const lat0 = 38.9 * Math.PI / 180, MX = 111320 * Math.cos(lat0), MY = 110574;   // metres per degree
+const toM = ([lo, la]) => [lo * MX, la * MY];
+const segDist = (p, a, b) => {
+  const dx = b[0] - a[0], dy = b[1] - a[1];
+  const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1)));
+  return Math.hypot(p[0] - a[0] - t * dx, p[1] - a[1] - t * dy);
+};
+const RADII = { r25: 402.3, r50: 804.7, r100: 1609.3 };
+const sitesM = ll.map(toM);
 const covers = tracts.map(t => {
-  const out = [];
-  ll.forEach((p, i) => { if (inPoly(p, t.geometry.coordinates)) out.push(i); });
+  const rings = t.geometry.coordinates, ringsM = rings.map(r => r.map(toM));
+  const out = { inside: [], r25: [], r50: [], r100: [] };
+  ll.forEach((p, i) => {
+    if (inPoly(p, rings)) { for (const k in out) out[k].push(i); return; }
+    let d = Infinity;
+    for (const r of ringsM) for (let j = 0; j < r.length - 1; j++) d = Math.min(d, segDist(sitesM[i], r[j], r[j + 1]));
+    for (const k in RADII) if (d <= RADII[k]) out[k].push(i);
+  });
   return out;
 });
 
@@ -44,4 +62,4 @@ const out = {
 };
 fs.writeFileSync('docs/data/data.json', JSON.stringify(out));
 console.log('candidates', out.candidates.length, 'tracts', out.tracts.length, 'baseline', out.baseline.length,
-  'stations', out.stations.length, 'tracts w/o cover', covers.filter(c => !c.length).length);
+  'stations', out.stations.length, 'tracts coverable (inside / 0.5mi)', covers.filter(c => c.inside.length).length, covers.filter(c => c.r50.length).length);
