@@ -48,6 +48,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .legend{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:.55rem .7rem;font-size:.78rem;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .pin{width:22px;height:22px;border-radius:50% 50% 50% 0;background:var(--opt);transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+:root[data-theme=dark] .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .leaflet-container{font-family:Inter,sans-serif;background:var(--bg3)}
 @media(max-width:760px){main{flex-direction:column}aside{width:100%;max-height:48vh;border-right:0;border-bottom:1px solid var(--border)}#map{min-height:50vh}header .hide-sm{display:none}}
 </style>
@@ -93,7 +94,7 @@ const fmt = new Intl.NumberFormat('en-US');
 // theme
 let theme; try { theme = localStorage.getItem('theme'); } catch (e) {}
 theme = theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-const applyTheme = () => { document.documentElement.dataset.theme = theme; if (window.setBase) setBase(); };
+const applyTheme = () => { document.documentElement.dataset.theme = theme; };
 $('theme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', theme); } catch (e) {} applyTheme(); };
 document.documentElement.dataset.theme = theme;
 
@@ -104,12 +105,7 @@ sliders.forEach(([s]) => $(s).addEventListener('input', syncOut)); syncOut();
 
 // map
 const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([38.9, -77.03], 12);
-const tiles = {
-  light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap contributors © CARTO', maxZoom: 19 }),
-  dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { attribution: '© OpenStreetMap contributors © CARTO', maxZoom: 19 })
-};
-let curBase; window.setBase = () => { if (curBase) map.removeLayer(curBase); curBase = tiles[theme === 'dark' ? 'dark' : 'light'].addTo(map); curBase.bringToBack(); };
-setBase();
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19 }).addTo(map);
 const legend = L.control({ position: 'bottomright' });
 legend.onAdd = () => { const d = L.DomUtil.create('div', 'legend'); d.innerHTML = '<b>Legend</b><br><i style="background:var(--cand)"></i>Candidate sites<br><i style="background:var(--opt)"></i>Optimal sites<br><i style="background:var(--cov);opacity:.5"></i>Covered tracts'; return d; };
 legend.addTo(map);
