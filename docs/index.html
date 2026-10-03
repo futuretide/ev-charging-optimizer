@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>EV Charger Siting Optimizer</title>
 <meta name="description" content="Interactive demo: optimal EV charger placement in Washington D.C. using binary integer programming, solved live in your browser.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -11,28 +11,32 @@
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <style>
 :root{--bg:#fff;--bg2:#f7f8fa;--bg3:#f0f2f5;--text:#0a0a0a;--muted:#6b7280;--accent:#0f62fe;--accent2:#6f42c1;--border:#e5e7eb;--card:#fff;--cand:#1f77b4;--opt:#e5484d;--cov:#0f62fe;}
-:root[data-theme=dark]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--text:#f0f0f0;--muted:#8888aa;--accent:#60a5fa;--accent2:#a78bfa;--border:#2a2a3a;--card:#13131e;--cand:#5aa9e6;--opt:#ff6b70;--cov:#60a5fa;}
+:root[data-theme=dark]{--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--text:#f0f0f0;--muted:#9a9ab8;--accent:#60a5fa;--accent2:#a78bfa;--border:#2a2a3a;--card:#13131e;--cand:#7db9ee;--opt:#ff6b70;--cov:#60a5fa;}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;font-size:14px}
-header{display:flex;align-items:center;gap:1rem;padding:.7rem 1.1rem;border-bottom:1px solid var(--border);background:var(--card)}
-header h1{font:700 1.05rem Outfit,sans-serif;margin:0;letter-spacing:-.01em}
+header{display:flex;align-items:center;gap:.8rem;padding:.7rem 1.1rem;border-bottom:1px solid var(--border);background:var(--card);z-index:1100}
+header h1{font:700 1.05rem Outfit,sans-serif;margin:0;letter-spacing:-.01em;white-space:nowrap}
+header h1 span{color:var(--muted);font-weight:500}
 header .sp{flex:1}
-header a,header button{color:var(--muted);font:500 .8rem Inter,sans-serif;text-decoration:none;background:none;border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;cursor:pointer}
+header a,header button{color:var(--muted);font:500 .8rem Inter,sans-serif;text-decoration:none;background:none;border:1px solid var(--border);border-radius:8px;padding:.35rem .7rem;cursor:pointer;white-space:nowrap}
 header a:hover,header button:hover{color:var(--accent);border-color:var(--accent)}
-main{flex:1;display:flex;min-height:0}
-aside{width:310px;flex:none;padding:1.1rem;overflow-y:auto;border-right:1px solid var(--border);background:var(--bg2)}
-aside h2{font:700 .7rem Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .6rem}
+main{flex:1;display:flex;min-height:0;position:relative}
+aside{width:330px;flex:none;padding:1.1rem;overflow-y:auto;border-right:1px solid var(--border);background:var(--bg2)}
+.handle{display:none}
+aside h2{font:700 .7rem Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:1.3rem 0 .6rem}
 aside h2:first-child{margin-top:0}
 .ctl{margin-bottom:.9rem}
 .ctl label{display:flex;justify-content:space-between;font-weight:500;margin-bottom:.3rem}
 .ctl output{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
-.ctl small{color:var(--muted);display:block;margin-top:.15rem;font-size:.72rem;line-height:1.4}
+.ctl small{color:var(--muted);display:block;margin-top:.2rem;font-size:.72rem;line-height:1.4}
 input[type=range]{width:100%;accent-color:var(--accent)}
+select{width:100%;padding:.45rem .5rem;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font:500 .82rem Inter,sans-serif}
 .btns{display:flex;gap:.5rem;margin-top:1rem}
 .btns button{flex:1;padding:.6rem;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:600 .85rem Inter,sans-serif;cursor:pointer}
 .btns button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btns button:disabled{opacity:.6;cursor:wait}
+.btns.second button{font-weight:500;font-size:.78rem;padding:.45rem}
 .chk{display:flex;align-items:center;gap:.5rem;margin:.4rem 0;cursor:pointer}
 .chk i{width:10px;height:10px;border-radius:50%;display:inline-block}
 #status{margin-top:1rem;padding:.7rem .8rem;border-radius:10px;border:1px solid var(--border);background:var(--card);font-size:.8rem;line-height:1.5;color:var(--muted)}
@@ -41,90 +45,158 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .kpis{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.8rem}
 .kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.55rem .65rem}
 .kpi b{display:block;font:700 1.1rem Outfit,sans-serif;font-variant-numeric:tabular-nums}
-.kpi span{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.about{font-size:.75rem;color:var(--muted);line-height:1.55;margin-top:1.2rem}
-.about a{color:var(--accent)}
+.kpi span{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;line-height:1.3;display:block}
+.note{font-size:.72rem;color:var(--muted);line-height:1.5;margin:.6rem 0 0}
+#list{margin:0;padding:0;list-style:none;max-height:220px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+#list li{display:flex;gap:.6rem;align-items:baseline;padding:.4rem .6rem;border-bottom:1px solid var(--border);cursor:pointer;font-size:.78rem}
+#list li:last-child{border:0}
+#list li:hover,#list li:focus-visible{background:var(--bg3);outline:none}
+#list li b{color:var(--opt);min-width:1.6rem;font-variant-numeric:tabular-nums}
+#list li span{color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+details{margin-top:1.2rem;font-size:.78rem;color:var(--muted);line-height:1.6}
+details summary{cursor:pointer;font:700 .7rem Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+details p{margin:.6rem 0 0}
+details a{color:var(--accent)}
 #map{flex:1;min-width:0}
 .legend{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:.55rem .7rem;font-size:.78rem;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .pin{width:22px;height:22px;border-radius:50% 50% 50% 0;background:var(--opt);transform:rotate(-45deg);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
-:root[data-theme=dark] .street-base .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
 .leaflet-container{font-family:Inter,sans-serif;background:var(--bg3)}
-@media(max-width:760px){header h1 span{display:none}main{flex-direction:column}aside{width:100%;max-height:48vh;border-right:0;border-bottom:1px solid var(--border)}#map{min-height:50vh}header .hide-sm{display:none}}
+:root[data-theme=dark] .street-base .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9)}
+.hint{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:1000;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:.45rem .9rem;font-size:.8rem;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer;max-width:calc(100% - 100px);text-align:center}
+.hint[hidden]{display:none}
+@media(max-width:760px){
+  header{padding:.55rem .8rem}
+  header h1 span,header .hide-sm{display:none}
+  #map{position:absolute;inset:0}
+  aside{position:absolute;z-index:1050;left:0;right:0;bottom:0;width:auto;max-height:72vh;border:0;border-top:1px solid var(--border);border-radius:16px 16px 0 0;box-shadow:0 -6px 24px rgba(0,0,0,.25);padding:.4rem 1rem calc(.9rem + env(safe-area-inset-bottom))}
+  .handle{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;background:none;border:0;color:var(--muted);font:600 .75rem Inter,sans-serif;padding:.4rem 0 .6rem;cursor:pointer}
+  .handle::before{content:'';width:36px;height:4px;border-radius:2px;background:var(--border);position:absolute;top:.4rem;left:50%;margin-left:-18px}
+  #panel.collapsed .collapsible{display:none}
+  #panel.collapsed #status{display:none}
+  #panel.collapsed .btns{margin-top:0}
+  .kpis{grid-template-columns:repeat(4,1fr);gap:.35rem}
+  .kpi{padding:.4rem}.kpi b{font-size:.95rem}.kpi span{font-size:.58rem}
+  .legend{display:none}
+  .hint{top:8px}
+}
 </style>
 </head>
 <body>
 <header>
-  <h1>⚡ EV Charger Siting <span style="color:var(--muted);font-weight:500">· Washington D.C.</span></h1>
+  <h1>⚡ EV Charger Siting <span>· Washington D.C.</span></h1>
   <span class="sp"></span>
   <a class="hide-sm" href="https://github.com/futuretide/ev-charging-optimizer" target="_blank" rel="noopener">GitHub</a>
   <a href="https://futuretide.github.io/portfolio">← Portfolio</a>
   <button id="theme" aria-label="Toggle theme">◐</button>
 </header>
 <main>
-<aside>
-  <h2>Model parameters</h2>
-  <div class="ctl"><label for="n">Number of chargers <output id="nv"></output></label><input id="n" type="range" min="10" max="200" step="1" value="50"></div>
-  <div class="ctl"><label for="w">Coverage weight <output id="wv"></output></label><input id="w" type="range" min="0" max="100" step="1" value="100"><small>Bonus for covering each census tract, vs. demand score per site.</small></div>
-  <div class="ctl"><label for="d">Min distance (m) <output id="dv"></output></label><input id="d" type="range" min="0" max="2000" step="50" value="500"><small>No two selected sites closer than this (anti-clumping).</small></div>
-  <div class="btns"><button class="primary" id="run" disabled>Run Optimization</button><button id="reset">Reset</button></div>
-  <div id="status">Loading model & data…</div>
-  <div class="kpis" id="kpis" hidden>
-    <div class="kpi"><b id="k-sites">–</b><span>Sites selected</span></div>
-    <div class="kpi"><b id="k-obj">–</b><span>Objective</span></div>
-    <div class="kpi"><b id="k-tr">–</b><span>Tracts covered</span></div>
-    <div class="kpi"><b id="k-pop">–</b><span>Population covered</span></div>
+<aside id="panel" class="collapsed">
+  <button class="handle" id="handle" aria-expanded="false">⚙ Settings, layers &amp; sites ▲</button>
+  <div class="collapsible">
+    <h2>Model parameters</h2>
+    <div class="ctl"><label for="n">Number of chargers <output id="nv"></output></label><input id="n" type="range" min="10" max="200" step="1" value="50"></div>
+    <div class="ctl"><label for="w">Coverage weight <output id="wv"></output></label><input id="w" type="range" min="0" max="100" step="1" value="100"><small>Bonus for covering each census tract, vs. demand score per site.</small></div>
+    <div class="ctl"><label for="d">Min distance (m) <output id="dv"></output></label><input id="d" type="range" min="0" max="2000" step="50" value="500"><small>No two selected sites closer than this (anti-clumping).</small></div>
+    <div class="ctl"><label for="rule">Tract is "covered" when…</label>
+      <select id="rule">
+        <option value="inside" selected>a site is inside the tract (as in the Python code)</option>
+        <option value="r25">a site is within 0.25 mi of it</option>
+        <option value="r50">a site is within 0.5 mi of it (as in the paper)</option>
+        <option value="r100">a site is within 1 mi of it</option>
+      </select></div>
   </div>
-  <h2>Layers</h2>
-  <label class="chk"><input type="checkbox" id="l-cand" checked><i style="background:var(--cand)"></i>Candidate sites</label>
-  <label class="chk"><input type="checkbox" id="l-opt" checked><i style="background:var(--opt)"></i>Optimal sites</label>
-  <label class="chk"><input type="checkbox" id="l-tr" checked><i style="background:var(--cov);opacity:.5"></i>Covered census tracts</label>
-  <label class="chk"><input type="checkbox" id="l-st"><i style="background:#2da44e"></i>Existing chargers (450)</label>
-  <p class="about">Runs the same mixed-integer model as the Python/Pyomo version (maximize demand + coverage bonus, subject to a charger budget and minimum spacing) on 2,000 candidate sites. It is solved <b>exactly in your browser</b> with the HiGHS solver (WebAssembly), so no server is involved. Hover a pin for the street name, click for coordinates.<br><br>Part of my <a href="https://futuretide.github.io/portfolio">portfolio</a>. Research paper and code on <a href="https://github.com/futuretide/ev-charging-optimizer" target="_blank" rel="noopener">GitHub</a>.</p>
+  <div class="btns"><button class="primary" id="run" disabled>Run Optimization</button><button id="reset">Reset</button></div>
+  <div class="btns second collapsible"><button id="saved" disabled>Show saved 50-site solution</button></div>
+  <div id="status">Loading model &amp; data…</div>
+  <div class="kpis" id="kpis" hidden>
+    <div class="kpi"><b id="k-sites">–</b><span>Sites</span></div>
+    <div class="kpi"><b id="k-obj">–</b><span>Objective</span></div>
+    <div class="kpi"><b id="k-tr">–</b><span>Tracts ≤0.5 mi</span></div>
+    <div class="kpi"><b id="k-pop">–</b><span>Population ≤0.5 mi</span></div>
+  </div>
+  <p class="note collapsible" id="k-note" hidden></p>
+  <div class="collapsible">
+    <div id="sites-wrap" hidden>
+      <h2>Selected sites <button id="csv" style="float:right;font:600 .7rem Inter,sans-serif;background:none;border:1px solid var(--border);color:var(--accent);border-radius:6px;padding:.15rem .5rem;cursor:pointer;text-transform:none;letter-spacing:0">⬇ CSV</button></h2>
+      <ul id="list"></ul>
+      <p class="note">Ranked by demand score. Click one to find it on the map.</p>
+    </div>
+    <h2>Layers</h2>
+    <label class="chk"><input type="checkbox" id="l-cand" checked><i style="background:var(--cand)"></i>Candidate sites (2,000)</label>
+    <label class="chk"><input type="checkbox" id="l-opt" checked><i style="background:var(--opt)"></i>Optimal sites</label>
+    <label class="chk"><input type="checkbox" id="l-tr" checked><i style="background:var(--cov);opacity:.5"></i>Covered census tracts</label>
+    <label class="chk"><input type="checkbox" id="l-st"><i style="background:#2da44e"></i>Existing chargers (450)</label>
+    <details>
+      <summary>About this model</summary>
+      <p>The same mixed-integer program as the Python/Pyomo version: maximize total demand plus a bonus for every covered census tract, subject to a charger budget and a minimum spacing between sites, over 2,000 candidate locations.</p>
+      <p>It is solved <b>exactly in your browser</b> with the HiGHS solver (WebAssembly), so no server is involved.</p>
+      <p><b>On the numbers:</b> the Python code counts a tract as covered only if a site lies inside it. The paper uses a 0.5-mile radius and reports 72.3% of tracts and 78.5% of the population. The tiles above always show the 0.5-mile figures; the saved 50-site solution scores about 76% / 80% on this demo's 206 tracts.</p>
+      <p>Hover a pin for the street name, click for coordinates. Part of my <a href="https://futuretide.github.io/portfolio">portfolio</a>; code and paper on <a class="hide-sm" href="https://github.com/futuretide/ev-charging-optimizer" target="_blank" rel="noopener">GitHub</a>.</p>
+    </details>
+  </div>
 </aside>
 <div id="map" role="application" aria-label="Map of selected EV charger sites"></div>
+<div class="hint" id="hint" role="status">👋 Drag the sliders, then press <b>Run Optimization</b></div>
 </main>
 <script src="lib/leaflet/leaflet.js"></script>
+<script src="optimizer.js"></script>
 <script>
 const $ = id => document.getElementById(id);
-const DEFAULTS = { n: 50, w: 100, d: 500 };
+const DEFAULTS = { n: 50, w: 100, d: 500, rule: 'inside' };
 const R = 6378137, toLL = (x, y) => [(2 * Math.atan(Math.exp(y / R)) - Math.PI / 2) * 180 / Math.PI, x / R * 180 / Math.PI];
 const fmt = new Intl.NumberFormat('en-US');
+const mobile = matchMedia('(max-width:760px)');
 
-// theme
+// ---------- theme ----------
 let theme; try { theme = localStorage.getItem('theme'); } catch (e) {}
 theme = theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-const applyTheme = () => { document.documentElement.dataset.theme = theme; };
-$('theme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('theme', theme); } catch (e) {} applyTheme(); };
 document.documentElement.dataset.theme = theme;
+$('theme').onclick = () => {
+  theme = theme === 'dark' ? 'light' : 'dark';
+  try { localStorage.setItem('theme', theme); } catch (e) {}
+  document.documentElement.dataset.theme = theme;
+  if (active === clean) fillClean();
+};
 
-// sliders
+// ---------- sliders / bottom sheet ----------
 const sliders = [['n', 'nv'], ['w', 'wv'], ['d', 'dv']];
 const syncOut = () => sliders.forEach(([s, o]) => $(o).textContent = $(s).value);
 sliders.forEach(([s]) => $(s).addEventListener('input', syncOut)); syncOut();
+const setSheet = open => { $('panel').classList.toggle('collapsed', !open); $('handle').setAttribute('aria-expanded', open); $('handle').textContent = open ? '⚙ Settings, layers & sites ▼' : '⚙ Settings, layers & sites ▲'; };
+$('handle').onclick = () => setSheet($('panel').classList.contains('collapsed'));
+const syncSheet = () => { if (!mobile.matches) { $('panel').classList.remove('collapsed'); } else { setSheet(false); } };
+mobile.addEventListener('change', syncSheet); syncSheet();
 
-// map
+// ---------- map & basemaps ----------
 const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([38.9, -77.03], 12);
-const attrOSM = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-const baseStreet = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: attrOSM, maxZoom: 19 });
-const baseStreetAlt = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles © Esri', maxZoom: 19 });
-const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Tiles © Esri, Maxar, Earthstar Geographics', maxZoom: 19 });
-// dark theme darkens street maps only (CSS filter); satellite stays natural
-const setStreetClass = on => map.getContainer().classList.toggle('street-base', on);
-let baseNow = baseStreet.addTo(map); setStreetClass(true);
-// if OpenStreetMap tiles keep failing, fall back to Esri street tiles
-let tileErrors = 0;
-baseStreet.on('tileerror', () => { if (++tileErrors === 6 && map.hasLayer(baseStreet)) { map.removeLayer(baseStreet); baseNow = baseStreetAlt.addTo(map); baseStreetAlt.bringToBack(); } });
-L.control.layers({ 'Street': baseStreet, 'Satellite': satellite }, null, { position: 'topright' }).addTo(map);
-map.on('baselayerchange', e => { baseNow = e.layer; setStreetClass(e.layer !== satellite); });
+const esri = (name, extra) => L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/${name}/MapServer/tile/{z}/{y}/{x}`, { maxNativeZoom: 16, maxZoom: 19, ...extra });
+const attrEsri = 'Tiles © Esri, HERE, Garmin, © OpenStreetMap contributors';
+const clean = L.layerGroup();               // calm gray basemap that follows the theme
+const fillClean = () => {
+  clean.clearLayers();
+  const k = theme === 'dark' ? 'Dark' : 'Light';
+  clean.addLayer(esri(`Canvas/World_${k}_Gray_Base`, { attribution: attrEsri }));
+  clean.addLayer(esri(`Canvas/World_${k}_Gray_Reference`, { pane: 'overlayPane', zIndex: 1 }));
+};
+const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19 });
+const sat = esri('World_Imagery', { attribution: 'Tiles © Esri, Maxar, Earthstar Geographics' });
+let active = clean;
+fillClean(); clean.addTo(map);
+L.control.layers({ 'Clean': clean, 'Street': osm, 'Satellite': sat }, null, { position: 'topright' }).addTo(map);
+map.on('baselayerchange', e => { active = e.layer; map.getContainer().classList.toggle('street-base', e.layer === osm); });
+// if the gray tiles keep failing, fall back to OpenStreetMap
+let tileErr = 0;
+clean.on('tileerror', () => { if (++tileErr === 6 && active === clean) { map.removeLayer(clean); osm.addTo(map); active = osm; map.getContainer().classList.add('street-base'); } });
+
 const legend = L.control({ position: 'bottomright' });
 legend.onAdd = () => { const d = L.DomUtil.create('div', 'legend'); d.innerHTML = '<b>Legend</b><br><i style="background:var(--cand)"></i>Candidate sites<br><i style="background:var(--opt)"></i>Optimal sites<br><i style="background:var(--cov);opacity:.5"></i>Covered tracts'; return d; };
 legend.addTo(map);
 
 const gCand = L.layerGroup(), gOpt = L.layerGroup(), gTr = L.layerGroup(), gSt = L.layerGroup();
-let data, ll, worker;
+let data, ll, worker, lastSel = [], markers = new Map();
 
-// reverse geocoding (cached, throttled to Nominatim's 1 req/s policy)
+// ---------- reverse geocoding (cached, throttled to Nominatim's 1 req/s policy) ----------
 const streetCache = new Map(); let lastReq = 0;
 async function street(lat, lon) {
   const k = lat.toFixed(5) + ',' + lon.toFixed(5);
@@ -140,61 +212,113 @@ async function street(lat, lon) {
 }
 
 function drawStatic() {
-  gCand.clearLayers(); gSt.clearLayers();
-  ll.forEach(p => L.circleMarker(p, { radius: 3, weight: 0, fillOpacity: .5, fillColor: getComputedStyle(document.documentElement).getPropertyValue('--cand').trim() || '#1f77b4' }).addTo(gCand));
-  data.stations.forEach(([lo, la]) => L.circleMarker([la, lo], { radius: 3, weight: 1, color: '#fff', fillColor: '#2da44e', fillOpacity: .9 }).addTo(gSt));
+  ll.forEach(p => L.circleMarker(p, { radius: 2.5, weight: 0, fillOpacity: .4, fillColor: '#3b82c4', interactive: false }).addTo(gCand));
+  data.stations.forEach(([lo, la]) => L.circleMarker([la, lo], { radius: 3, weight: 1, color: '#fff', fillColor: '#2da44e', fillOpacity: .9, interactive: false }).addTo(gSt));
 }
 
-function showResult(r) {
-  gOpt.clearLayers(); gTr.clearLayers();
-  const sel = new Set(r.selected);
-  const icon = L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [22, 22], iconAnchor: [4, 22], tooltipAnchor: [12, -12] });
-  r.selected.forEach(i => {
+// ---------- results ----------
+const pinIcon = L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [22, 22], iconAnchor: [4, 22], tooltipAnchor: [12, -12] });
+function renderSites(sel, resultInfo) {
+  lastSel = sel; markers.clear(); gOpt.clearLayers(); gTr.clearLayers();
+  const set = new Set(sel);
+  sel.forEach(i => {
     const [lat, lon] = ll[i];
-    const m = L.marker([lat, lon], { icon, title: 'Optimal site' }).bindPopup(`📍 ${lat.toFixed(5)}, ${lon.toFixed(5)}<br>Demand score: ${data.candidates[i][2].toFixed(2)}`);
+    const m = L.marker([lat, lon], { icon: pinIcon, title: 'Optimal site' });
+    m.bindPopup(() => `📍 ${lat.toFixed(5)}, ${lon.toFixed(5)}<br>Demand score: ${data.candidates[i][2].toFixed(2)}`);
     m.bindTooltip('Looking up street…');
     m.on('tooltipopen', async () => m.setTooltipContent(await street(lat, lon)));
-    m.addTo(gOpt);
+    m.addTo(gOpt); markers.set(i, m);
   });
+  const rule = $('rule').value;
   data.tracts.forEach(t => {
-    if (!t.covers.some(i => sel.has(i))) return;
-    L.polygon(t.poly.map(ring => ring.map(([x, y]) => [y, x])), { color: '#0f62fe', weight: 1, fillOpacity: .12, interactive: false }).addTo(gTr);
+    if (!t.covers[rule].some(i => set.has(i))) return;
+    L.polygon(t.poly.map(ring => ring.map(([x, y]) => [y, x])), { color: '#0f62fe', weight: 1, fillOpacity: .13, interactive: false }).addTo(gTr);
   });
-  const s = r.stats;
-  $('k-sites').textContent = r.selected.length; $('k-obj').textContent = r.objective.toFixed(1);
-  $('k-tr').textContent = `${s.covered} / ${s.tracts}`; $('k-pop').textContent = Math.round(100 * s.pop / s.popAll) + '%';
-  $('kpis').hidden = false;
-  setStatus(`✅ Done. Objective value: ${r.objective.toFixed(2)} (${r.status}, ${(r.ms / 1000).toFixed(1)}s, ${fmt.format(r.pairs)} spacing constraints).`, 'ok');
-  if (r.selected.length) map.fitBounds(L.latLngBounds(r.selected.map(i => ll[i])).pad(.15));
+  // ranked list
+  const ranked = [...sel].sort((a, b) => data.candidates[b][2] - data.candidates[a][2]);
+  $('list').innerHTML = ranked.map((i, k) => `<li tabindex="0" data-i="${i}"><b>${k + 1}</b>${ll[i][0].toFixed(4)}, ${ll[i][1].toFixed(4)}<span>${data.candidates[i][2].toFixed(2)}</span></li>`).join('');
+  $('sites-wrap').hidden = !sel.length;
+  if (sel.length) map.fitBounds(L.latLngBounds(sel.map(i => ll[i])).pad(.15));
 }
-function clearResult() { gOpt.clearLayers(); gTr.clearLayers(); $('kpis').hidden = true; setStatus('Adjust parameters and click <b>Run Optimization</b> to generate the map.'); }
-function setStatus(html, cls) { const s = $('status'); s.innerHTML = html; s.className = cls || ''; }
+function focusSite(i) {
+  const m = markers.get(i); if (!m) return;
+  if (mobile.matches) setSheet(false);
+  map.setView(m.getLatLng(), Math.max(map.getZoom(), 15), { animate: true });
+  m.openPopup(); m.openTooltip();
+}
+$('list').addEventListener('click', e => { const li = e.target.closest('li'); if (li) focusSite(+li.dataset.i); });
+$('list').addEventListener('keydown', e => { if (e.key === 'Enter') { const li = e.target.closest('li'); if (li) focusSite(+li.dataset.i); } });
 
-// layer toggles
+function showKpis(sites, objective, half) {
+  $('k-sites').textContent = sites; $('k-obj').textContent = objective == null ? '–' : objective.toFixed(1);
+  $('k-tr').textContent = Math.round(100 * half.covered / half.tracts) + '%';
+  $('k-pop').textContent = Math.round(100 * half.pop / half.popAll) + '%';
+  $('kpis').hidden = false;
+}
+function showResult(r) {
+  renderSites(r.selected);
+  showKpis(r.selected.length, r.objective, r.statsHalf);
+  $('k-note').innerHTML = `Within 0.5 mi: ${r.statsHalf.covered} of ${r.statsHalf.tracts} tracts. Strictly inside a tract: ${r.stats.covered} of ${r.stats.tracts}. The paper reports 72.3% of tracts / 78.5% of population.`;
+  $('k-note').hidden = false;
+  setStatus(`✅ Done. Objective value: ${r.objective.toFixed(2)} (${r.status}, ${(r.ms / 1000).toFixed(1)}s, ${fmt.format(r.pairs)} spacing constraints).`, 'ok');
+}
+function clearResult() {
+  gOpt.clearLayers(); gTr.clearLayers(); lastSel = []; $('kpis').hidden = true; $('k-note').hidden = true; $('sites-wrap').hidden = true;
+  setStatus('Adjust parameters and click <b>Run Optimization</b> to generate the map.');
+}
+function setStatus(html, cls) { const s = $('status'); s.innerHTML = html; s.className = cls || ''; }
+const hideHint = () => { $('hint').hidden = true; };
+$('hint').onclick = hideHint; map.getContainer().addEventListener('pointerdown', hideHint);
+
+// ---------- layer toggles ----------
 [['l-cand', gCand], ['l-opt', gOpt], ['l-tr', gTr], ['l-st', gSt]].forEach(([id, g]) => {
   const upd = () => $(id).checked ? g.addTo(map) : map.removeLayer(g);
   $(id).addEventListener('change', upd); upd();
 });
 
-// worker
+// ---------- CSV ----------
+$('csv').onclick = () => {
+  const ranked = [...lastSel].sort((a, b) => data.candidates[b][2] - data.candidates[a][2]);
+  const rows = ['rank,latitude,longitude,demand_score,tract_population,median_income'].concat(ranked.map((i, k) =>
+    [k + 1, ll[i][0].toFixed(6), ll[i][1].toFixed(6), data.candidates[i][2], data.candidates[i][3], data.candidates[i][4]].join(',')));
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([rows.join('\n')], { type: 'text/csv' }));
+  a.download = 'ev_charger_sites.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+};
+
+// ---------- worker ----------
 function startWorker() {
   worker = new Worker('worker.js');
   worker.onmessage = e => {
     const m = e.data;
     if (m.type === 'ready') {
       data = m.data; ll = data.candidates.map(c => toLL(c[0], c[1])); drawStatic();
-      $('run').disabled = false; $('run').click();   // show the default 50-site solution immediately
+      $('run').disabled = false; $('saved').disabled = false;
+      showSaved();   // open on the saved 50-site solution so the map is never empty
     } else if (m.type === 'result') { $('run').disabled = false; $('run').textContent = 'Run Optimization'; showResult(m.result); }
     else if (m.type === 'error') { $('run').disabled = !data; $('run').textContent = 'Run Optimization'; setStatus('⚠️ ' + m.message, 'err'); }
   };
   worker.onerror = () => setStatus('⚠️ Could not start the solver. Please reload, or try a recent desktop/mobile browser.', 'err');
 }
+function showSaved() {
+  const sel = data.baseline;
+  renderSites(sel);
+  showKpis(sel.length, null, EVOpt.stats(data, sel, 'r50'));
+  const ins = EVOpt.stats(data, sel, 'inside'), half = EVOpt.stats(data, sel, 'r50');
+  $('k-note').innerHTML = `Within 0.5 mi: ${half.covered} of ${half.tracts} tracts. Strictly inside a tract: ${ins.covered} of ${ins.tracts}. The paper reports 72.3% of tracts / 78.5% of population.`;
+  $('k-note').hidden = false;
+  setStatus('Showing the <b>saved 50-site solution</b> from the research project. Change a setting and press <b>Run Optimization</b> to re-solve.', 'ok');
+}
+$('saved').onclick = showSaved;
 $('run').onclick = () => {
+  hideHint(); if (mobile.matches) setSheet(false);
   $('run').disabled = true; $('run').textContent = 'Solving…'; setStatus('Solving the integer program with HiGHS… large spacing values can take several seconds.');
-  worker.postMessage({ n: +$('n').value, weight: +$('w').value, minDist: +$('d').value });
+  worker.postMessage({ n: +$('n').value, weight: +$('w').value, minDist: +$('d').value, rule: $('rule').value });
 };
-$('reset').onclick = () => { $('n').value = DEFAULTS.n; $('w').value = DEFAULTS.w; $('d').value = DEFAULTS.d; syncOut(); clearResult(); map.setView([38.9, -77.03], 12); };
-matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => {});
+$('reset').onclick = () => {
+  $('n').value = DEFAULTS.n; $('w').value = DEFAULTS.w; $('d').value = DEFAULTS.d; $('rule').value = DEFAULTS.rule; syncOut();
+  clearResult(); map.setView([38.9, -77.03], 12);
+};
 startWorker();
 </script>
 </body>

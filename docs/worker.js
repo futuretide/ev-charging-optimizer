@@ -10,7 +10,8 @@ onmessage = async e => {
   try {
     await ready;
     const r = await EVOpt.solve(highs, data, e.data);
-    r.stats = EVOpt.stats(data, r.selected);
+    r.stats = EVOpt.stats(data, r.selected, 'inside');
+    r.statsHalf = EVOpt.stats(data, r.selected, 'r50');
     postMessage({ type: 'result', result: r });
   } catch (err) { postMessage({ type: 'error', message: String(err) }); }
 };
