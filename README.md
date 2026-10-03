@@ -2,6 +2,8 @@
 
 A geospatial decision support system for optimizing EV charging station placement across Washington D.C. using binary integer programming. Built as a graduate research project at George Mason University (CS787) and published in IEEE format.
 
+> **[▶ Live demo](https://futuretide.github.io/ev-charging-optimizer/)** — runs entirely in the browser (HiGHS solver compiled to WebAssembly). Adjust the number of chargers, coverage weight and minimum spacing, then re-solve the same integer program exactly. Source lives in [`docs/`](docs/); regenerate its data with `node scripts/build_web_data.mjs`.
+
 ![Optimal Sites Map](figures/optimal_sites_map.png)
 
 ## Research Paper
